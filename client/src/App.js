@@ -6,6 +6,7 @@ function App() {
   const [data, setData] = useState(null);
 
   const handleSubmit = (user, e) => {
+    setData(null);
     e.preventDefault();
     const requestOptions = {
       method: 'POST',
