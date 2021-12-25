@@ -4,10 +4,9 @@ const emailValidator = require('deep-email-validator');
 
 module.exports = {
     validateRegister: async (req, res, next) => {
-
-        //const docsFull = await UserModel.countDocuments({zeit: req.body.zeit});
+        
         const docsFull = await UserModel.aggregate([
-            // Limit to relevant documents and potentially take advantage of an index
+
             { $match: {
                 zeit: req.body.zeit
             }},
