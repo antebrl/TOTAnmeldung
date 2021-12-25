@@ -1,3 +1,4 @@
+const hbs = require('nodemailer-express-handlebars');
 const UserModel = require('./models/user.js');
 const nodeMailer = require('nodemailer');
 const emailValidator = require('deep-email-validator');
@@ -44,11 +45,25 @@ module.exports = {
             }
         });
 
+        transporter.use("compile", hbs({
+            viewEngine: {
+                extname: ".handlebars",
+                partialsDir: "./server/views",
+                defaultLayout: false,
+            },
+            viewPath: "./server/views"
+        }));
+
         const mailOptions = {
             from: `"Tag der Offenen Tür AKG" <${process.env.EMAIL_USER}>`,
             to: req.body.email,
             subject: 'Anmeldebestätigung',
-            text: 'Ihre Anmeldung für den Tag der Offenen Tür wurde bei uns registriert: ' + req.body
+            template: "registerEmail",
+            context: {
+                name: `${req.body.vorname} ${req.body.name}`,
+                time: req.body.zeit,
+                dependants: req.body.personen,
+            }
         };
 
         transporter.sendMail(mailOptions, (err, info) => {
