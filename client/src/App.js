@@ -1,32 +1,17 @@
-import './App.css';
-import React, { useState } from "react";
-import Form from './components/Form';
+import React from "react";
+import "./styles/app.css"
+import Form from "./components/Form";
+import Header from "./components/Header";
+import Hinweise from "./components/Hinweise";
 
 function App() {
-  const [data, setData] = useState(null);
-
-  const handleSubmit = (user, e) => {
-    setData(null);
-    e.preventDefault();
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user)
-    };
-
-    fetch("/api/person", requestOptions)
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  };
-
   return (
     <div className="App">
-      <header className="App-header">
-        <p>{!data ? "Loading.." : data}</p>
-        <Form handleSubmit={handleSubmit}/>
-      </header>
+      <Header />
+      <Hinweise />
+      <Form />
     </div>
-  );
+  )
 }
 
 export default App;
