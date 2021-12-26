@@ -6,21 +6,13 @@ const emailValidator = require('deep-email-validator');
 module.exports = {
     validateRegister: async (req, res, next) => {
         
-        const docsFull = await UserModel.aggregate([
-
-            { $match: {
-                zeit: req.body.zeit
-            }},
-        
-            { $project: {
-                total: { $add: "$personen"}
-            }}
-        ]);
-        let sum = 0;
-        for(let i=docsFull.length; i--;) {
-            sum+=docsFull[i].total;
-        }
-        if(sum+req.body.personen >= 250) return res.status(400).json({message: "Database is full!"});
+        const personCount = await UserModel.find({
+            zeit: req.body.zeit,
+        });
+    
+        let counter = 0;
+        Array.from(personCount).forEach(person => counter += person.personen);
+        if(counter+req.body.personen >= 250) return res.status(400).json({message: "Database is full!"});
 
         const docsUsed = await UserModel.countDocuments({email:req.body.email});
         if(docsUsed > 0) return res.status(400).json({message: "Email already registrated!"});

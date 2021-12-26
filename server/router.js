@@ -8,8 +8,4 @@ router.post("/api", middleware.validateRegister, middleware.handleMail, (req, re
     res.status(201).json({ message: "Sucess!" });
 });
 
-router.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/src', 'index.js'));
-});
-
 module.exports = router;
