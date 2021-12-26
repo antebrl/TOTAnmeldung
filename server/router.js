@@ -2,10 +2,15 @@ import express from "express";
 const router = express.Router();
 import "express-async-errors";
 import {validateRegister, handleMail} from "./middleware.js";
-import {sumPersons} from "./Controller.js";
+import {sumPersons} from "./Controlles.js";
+import UserModel from "./models/user.js";
 
-router.post("/person", validateRegister, handleMail, (req, res, next) => {
+router.post("/person", validateRegister, handleMail, async (req, res, next) => {
     //Sucess
+    const user = new UserModel(req.body);
+    await user.save((err) => {
+        if(err) return res.status(500).json({ message: "Database issue!" });
+    }); 
     res.status(201).json({ message: "Sucess!" });
 });
 

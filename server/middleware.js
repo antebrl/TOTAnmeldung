@@ -2,7 +2,7 @@ import hbs from "nodemailer-express-handlebars";
 import UserModel from "./models/user.js";
 import nodeMailer from "nodemailer";
 import emailValidator from "deep-email-validator";
-import {sumPersons} from "./Controller.js";
+import {sumPersons} from "./Controlles.js";
 
 
 export const validateRegister = async (req, res, next) => {
@@ -22,11 +22,6 @@ export const validateRegister = async (req, res, next) => {
 
     const resMailVal = await emailValidator.validate(req.body.email);
     if(!resMailVal.valid) return res.status(400).json({message: "Email is invalid"});
-
-    const user = new UserModel(req.body);
-    await user.save((err) => {
-        if(err) return res.status(500).json({ message: "Database issue!" });
-    }); 
 
     next();
 };
