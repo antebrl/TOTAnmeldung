@@ -3,7 +3,9 @@ import "../styles/header.css"
 
 const Header = () => {
     return(
-        <div className="Header">Header</div>
+        <div className="Header">
+            <img src="../img/logo.svg"></img>
+        </div>
     )
 }
 
