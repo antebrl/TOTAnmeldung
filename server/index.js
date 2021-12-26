@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json()) //Middleware POST request
 
-app.use("/", router);
+app.use("/api", router);
 
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));

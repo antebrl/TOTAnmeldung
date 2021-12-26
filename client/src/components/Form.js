@@ -34,8 +34,8 @@ const Form = ({handleSubmit}) => {
 
             <label className="label">Zeit</label>
             <select onChange={(e) => setZeit(e.currentTarget.value)} className="select">
-                <option>10:00 - 11:00</option>
-                <option>11:30 - 12:00</option>
+                <option>09:00 - 11:00</option>
+                <option>11:30 - 13:30</option>
             </select>
 
 

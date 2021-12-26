@@ -2,8 +2,11 @@ const hbs = require('nodemailer-express-handlebars');
 const UserModel = require('./models/user.js');
 const nodeMailer = require('nodemailer');
 const emailValidator = require('deep-email-validator');
+const Controller = require('./Controller.js');
+
 
 module.exports = {
+
     validateRegister: async (req, res, next) => {
 
         if(!req.body.name) return res.status(406).json({message: "No name was given."})
@@ -14,13 +17,7 @@ module.exports = {
 
         if(req.body.personen > 5) return res.status(403).json({message: "Too mandy dependants given."})
         
-        const personCount = await UserModel.find({
-            zeit: req.body.zeit,
-        });
-    
-        let counter = req.body.personen;
-        Array.from(personCount).forEach(person => counter += person.personen);
-        if(counter >= 255) return res.status(400).json({message: "Database is full!"});
+        if(await Controller.sumPersons(req.body.zeit) + req.body.personen >= 255) return res.status(400).json({message: "Database is full!"});
 
         const docsUsed = await UserModel.countDocuments({email:req.body.email});
         if(docsUsed > 0) return res.status(400).json({message: "Email already registrated!"});

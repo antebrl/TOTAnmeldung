@@ -14,7 +14,7 @@ function App() {
       body: JSON.stringify(user)
     };
 
-    fetch("/api", requestOptions)
+    fetch("/api/person", requestOptions)
       .then((res) => res.json())
       .then((data) => setData(data.message));
   };
