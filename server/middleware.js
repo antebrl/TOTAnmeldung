@@ -5,14 +5,22 @@ const emailValidator = require('deep-email-validator');
 
 module.exports = {
     validateRegister: async (req, res, next) => {
+
+        if(!req.body.name) return res.status(406).json({message: "No name was given."})
+        if(!req.body.vorname) return res.status(406).json({message: "No last name was given."})
+        if(!req.body.email) return res.status(406).json({message: "No email was given."})
+        if(!req.body.zeit) return res.status(406).json({message: "No time was given."})
+        if(!req.body.personen) return res.status(406).json({message: "No dependants are given."})
+
+        if(req.body.personen > 5) return res.status(403).json({message: "Too mandy dependants given."})
         
         const personCount = await UserModel.find({
             zeit: req.body.zeit,
         });
     
-        let counter = 0;
+        let counter = req.body.personen;
         Array.from(personCount).forEach(person => counter += person.personen);
-        if(counter+req.body.personen >= 250) return res.status(400).json({message: "Database is full!"});
+        if(counter >= 255) return res.status(400).json({message: "Database is full!"});
 
         const docsUsed = await UserModel.countDocuments({email:req.body.email});
         if(docsUsed > 0) return res.status(400).json({message: "Email already registrated!"});
