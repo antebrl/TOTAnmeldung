@@ -3,7 +3,7 @@ import "../styles/form.css"
 
 const Form = () => {
     return(
-        <div className="Form">Förm</div>
+        <div className="Form">Förm187</div>
     )
 }
 
