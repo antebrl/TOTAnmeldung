@@ -1,6 +1,6 @@
-const UserModel = require('./models/user.js');
+import UserModel from "./models/user.js";
 
-exports.sumPersons = async (timeSlot) => {
+export const sumPersons = async (timeSlot) => {
     const personCount = await UserModel.find({
         zeit: timeSlot,
     });

@@ -1,8 +1,10 @@
-const express = require("express");
-const router = require('./router.js');
-require('dotenv').config()
-const mongoose = require('mongoose');
+import express from "express";
+import router from "./router.js";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 const app = express();
+
+dotenv.config();
 
 mongoose.connect(process.env.MONGO, {useNewUrlParser: true, useUnifiedTopology: true});
 
