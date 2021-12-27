@@ -1,4 +1,20 @@
 .Header {
     flex: 14 1 0%;
-    background-color: blueviolet;
+
+    font-size: 1.6em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+
+    background-color: #eee;
+}
+
+.header.wrapper {
+    display: flex;
+    align-items: center;
+    gap: .4vh;
+}
+
+.logo {
+    height: 10vh;
+    width: auto;
 }
