@@ -1,4 +1,28 @@
 .Form {
     flex: 50 1 0%;
-    background-color: #333;
+    display: flex;
+    flex-direction: column;
+
+    width: 40vw;
+}
+
+.names {
+    display: flex;
+}
+
+.names input {
+    flex: 1 1 0%;
+}
+
+.reservierung {
+    display: flex;
+}
+
+.reservierung div {
+    display: flex;
+    flex-direction: column;
+}
+
+.reservierung div {
+    flex: 1 1 0%;
 }

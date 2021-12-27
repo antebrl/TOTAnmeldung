@@ -1,11 +1,11 @@
 .Header {
-    flex: 14 1 0%;
+    flex: 10 1 0%;
 
-    font-size: 1.6em;
+    padding: .5vh;
+
+    font-size: 2.6vh;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
-
-    background-color: #eee;
 }
 
 .header.wrapper {
