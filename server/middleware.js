@@ -38,10 +38,10 @@ export const handleMail = async (req, res, next) => {
     transporter.use("compile", hbs({
         viewEngine: {
             extname: ".handlebars",
-            partialsDir: "./server/views",
+            partialsDir: "./views",
             defaultLayout: false,
         },
-        viewPath: "./server/views"
+        viewPath: "./views"
     }));
 
     const mailOptions = {
