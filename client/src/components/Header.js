@@ -6,6 +6,7 @@ const Header = () => {
     return(
         <div className="Header">
             <div className="header wrapper">
+                <a href="https://www.pornhub.com/" className="secret">PH</a>
                 <a href="http://www.akg-bensheim.de/home/informationen-fuer-grundschuleltern-schueler/107-tag-der-offenen-tuer"><img src={logo} alt="akg" className="logo"></img></a>
                 <h1>Tag der offenen Tür</h1>
             </div>

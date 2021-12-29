@@ -1,28 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+.form.wrapper {
+    flex: 10 1 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ddd;
+}
+
 .Form {
-    flex: 50 1 0%;
+    display: flex;
+
+    padding: 3vh;
+
+    width: 85vw;
+}
+
+.Form h1 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 6vh;
+
+    padding-bottom: .6vh;
+}
+
+.hinweise,
+.register {
+    flex: 1 1 0%;
     display: flex;
     flex-direction: column;
-
-    width: 40vw;
+    gap: 3vh;
 }
 
-.names {
-    display: flex;
+/*Linke Div*/
+.hinweise {
+    background-color: #009788;
 }
 
-.names input {
-    flex: 1 1 0%;
+.hinweise h1 {
+    color: #eee;
 }
 
-.reservierung {
-    display: flex;
+.hinweise div,
+.register div {
+    padding: 0 4vh;
 }
 
-.reservierung div {
-    display: flex;
-    flex-direction: column;
+.hinweise p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.5vh;
+    font-weight: 500;
 }
 
-.reservierung div {
-    flex: 1 1 0%;
+/*Rechte Div*/
+.register {
+    background-color: #eee;
+}
+
+.register h1 {
+    color: #0d0005;
 }

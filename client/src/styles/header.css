@@ -1,20 +1,23 @@
 .Header {
-    flex: 10 1 0%;
-
-    padding: .5vh;
+    flex: 1 1 0%;
 
     font-size: 2.6vh;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Oswald', sans-serif;
     font-weight: bold;
+    
+    background-color: #ffffff;
 }
 
 .header.wrapper {
     display: flex;
     align-items: center;
-    gap: .4vh;
 }
 
 .logo {
     height: 10vh;
     width: auto;
+}
+
+.secret {
+    opacity: 0;
 }
