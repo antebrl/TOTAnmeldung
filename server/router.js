@@ -36,8 +36,8 @@ router.get("/persons", async (req, res, next) => {
         "09:00 - 11:00": await sumPersons("09:00 - 11:00"),
         "11:30 - 13:30": await sumPersons("11:30 - 13:30"),
     } 
-    */
     res.status(200).json({timeslots: response});    
+    */
 });
 
 export default router;
