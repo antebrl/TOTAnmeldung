@@ -6,6 +6,7 @@
     font-weight: bold;
     
     background-color: #ffffff;
+    border-bottom: 1px solid black;
 }
 
 .header.wrapper {
@@ -20,4 +21,5 @@
 
 .secret {
     opacity: 0;
+    pointer-events: none;
 }
