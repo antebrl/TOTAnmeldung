@@ -24,7 +24,7 @@ const Inputs = () => {
             name: lastName,
             email: email,
             zeit: time,
-            personen: dependants
+            personen: depe
         }).then(res => console.log(res))
     }
 
