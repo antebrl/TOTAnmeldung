@@ -7,8 +7,8 @@ import {sumPersons} from "./Controlles.js";
 
 export const validateRegister = async (req, res, next) => {
 
-    if(!req.body.name) return res.status(406).json({message: "No name was given."})
-    if(!req.body.vorname) return res.status(406).json({message: "No last name was given."})
+    if(!req.body.name) return res.status(406).json({message: "No last name was given."})
+    if(!req.body.vorname) return res.status(406).json({message: "No name was given."})
     if(!req.body.email) return res.status(406).json({message: "No email was given."})
     if(!req.body.zeit) return res.status(406).json({message: "No time was given."})
     if(!req.body.personen) return res.status(406).json({message: "No dependants are given."})

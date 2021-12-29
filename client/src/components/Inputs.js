@@ -8,7 +8,7 @@ const Inputs = () => {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [dependants, setDependants] = useState(1)
-    const [time, setTime] = useState("")
+    const [time, setTime] = useState("09:00-11:00")
 
     //Changes Dependants if user input is invalid.
     const handleDependants = (e) => {
@@ -19,19 +19,37 @@ const Inputs = () => {
     }
 
     const submit = () => {
+        /* fix this shit
         axios.post(`http://localhost:3001/api/person`, {
             vorname: name,
             name: lastName,
             email: email,
             zeit: time,
-            personen: depe
+            personen: dependants
         }).then(res => console.log(res))
+        */
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                vorname: name,
+                name: lastName,
+                email: email,
+                zeit: time,
+                personen: dependants
+            })
+          };
+      
+          fetch("/api/person", requestOptions)
+            .then((res) => res.json())
+            .then((data) => console.log(data.message));
     }
 
     const validateSubmit = () => {
         if(!name || !lastName || !email || !dependants || !time) {
             alert("Du Huso")
-            return
+            return     
         }
         if(!isNaN(name) || !isNaN(lastName)) {
             alert("Du Misset")
@@ -44,19 +62,19 @@ const Inputs = () => {
         <div className="Inputs">
                 <div className="in">
                     <label>Name</label>
-                    <input type={"text"} placeholder="Name" onChange={(e) => {setName(e.target.value)}}></input>
+                    <input type={"text"} placeholder="Name" onChange={(e) => {setName(e.target.value)}}/>
                 </div>
                 <div className="in">
                     <label>Nachname</label>
-                    <input type={"text"} placeholder="Nachname" onChange={(e) => {setLastName(e.target.value)}}></input>
+                    <input type={"text"} placeholder="Nachname" onChange={(e) => {setLastName(e.target.value)}}/>
                 </div>
                 <div className="in">
                     <label>Email</label>
-                    <input type={"email"} placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
+                    <input type={"email"} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="in">
                     <label>Personen</label>
-                    <input type={"number"} value={dependants} min={1} max={5} onChange={(e) => {handleDependants(e)}}></input>
+                    <input type={"number"} value={dependants} min={1} max={5} onChange={(e) => {handleDependants(e)}}/>
                 </div>
                 <div className="in">
                     <label>Uhrzeit</label>
