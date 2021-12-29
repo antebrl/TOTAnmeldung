@@ -1,0 +1,45 @@
+.Inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2.5vh;
+    font-weight: 500;
+}
+
+.Inputs .in {
+    display: flex;
+    flex-direction: column;
+}
+
+select,
+option,
+input {
+    font-size: 2vh;
+}
+
+.submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit button {
+    height: 6vh;
+    width: 12vh;
+    margin-top: 2vh;
+
+    color: #eee;
+
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 3vh;
+
+    background-color: #009788;
+
+    border-style: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+}
