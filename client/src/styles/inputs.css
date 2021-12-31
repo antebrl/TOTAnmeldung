@@ -43,3 +43,16 @@ input {
 
     cursor: pointer;
 }
+
+#email-error {
+    font-size: 1.5vh;
+    color: rgb(255, 0, 0, .7);
+    visibility: hidden;
+    height: 0;
+}
+
+#email-error.active {
+    visibility: visible;
+    height: 2vh;
+    margin-bottom: .1vh;
+}
