@@ -24,7 +24,7 @@ input {
     justify-content: flex-end;
 }
 
-.submit button {
+.submit input {
     height: 6vh;
     width: 12vh;
     margin-top: 2vh;
