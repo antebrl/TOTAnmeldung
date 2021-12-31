@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "A backend Server for Tag der offenen Tür am AKG.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ante Brähler, René Delion",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
