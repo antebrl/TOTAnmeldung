@@ -37,7 +37,7 @@ const Inputs = () => {
         fetch("/api/person", requestOptions)
             .then((res) => res.json())
             .then((data) => {
-                if(data.message === "Email is invalid" || data.message === "Email already registrated!") emailMessage(data.message)
+                if(data.message === "Ungültige Email!" || data.message === "Diese Email ist bereits registriert!") emailMessage(data.message)
             });
     }
 
