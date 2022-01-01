@@ -55,7 +55,7 @@ const Inputs = () => {
                     <div className="in">
                         <label>Email</label>
                         <p id="email-error"></p>
-                        <input type={"email"} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
+                        <input type={"email"} placeholder="Email" onChange={(e) => {setEmail(e.target.value); errorP.classList.remove("active")}} required/>
                     </div>
                     <div className="in">
                         <label>Personen</label>
