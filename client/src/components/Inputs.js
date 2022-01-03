@@ -9,18 +9,9 @@ const Inputs = () => {
     const [dependants, setDependants] = useState(1)
     const [time, setTime] = useState("09:00-11:00")
 
-    const errorP = document.querySelector("#email-error")
-
-
-    const emailMessage = (message) => {
-        errorP.textContent = `${message}`
-        errorP.classList.add("active")
-    }
 
     const submit = (e) => {
        e.preventDefault()
-
-       errorP.classList.remove("active")
 
        const requestOptions = {
         method: 'POST',
@@ -36,9 +27,7 @@ const Inputs = () => {
 
         fetch("/api/person", requestOptions)
             .then((res) => res.json())
-            .then((data) => {
-                if(data.message === "Ungültige Email!" || data.message === "Diese Email ist bereits registriert!") emailMessage(data.message)
-            });
+            .then((data) => {console.log(data)});
     }
 
     return(
@@ -54,8 +43,7 @@ const Inputs = () => {
                     </div>
                     <div className="in">
                         <label>Email</label>
-                        <p id="email-error"></p>
-                        <input type={"email"} placeholder="Email" onChange={(e) => {setEmail(e.target.value); errorP.classList.remove("active")}} required/>
+                        <input type={"email"} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
                     </div>
                     <div className="in">
                         <label>Personen</label>
