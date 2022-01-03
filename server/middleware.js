@@ -1,7 +1,6 @@
 import hbs from "nodemailer-express-handlebars";
 import UserModel from "./models/user.js";
 import nodeMailer from "nodemailer";
-import emailValidator from "deep-email-validator";
 import {sumPersons} from "./Controlles.js";
 
 
@@ -19,9 +18,6 @@ export const validateRegister = async (req, res, next) => {
 
     const docsUsed = await UserModel.countDocuments({email:req.body.email});
     if(docsUsed > 0) return res.status(400).json({message: "Diese Email ist bereits registriert!"});
-
-    const resMailVal = await emailValidator.validate(req.body.email);
-    if(!resMailVal.valid) return res.status(400).json({message: "Ungültige Email!"});
 
     next();
 };
