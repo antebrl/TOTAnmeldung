@@ -17,6 +17,17 @@
     width: 85vw;
 }
 
+@media screen and (max-width: 992px) {
+    .Form {
+        display: flex;
+        flex-direction: column;
+
+        gap: 3vh;
+
+        width: 100vw;
+    }
+}
+
 .Form h1 {
     text-align: center;
     font-family: 'Oswald', sans-serif;
