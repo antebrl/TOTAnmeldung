@@ -29,7 +29,11 @@ const Inputs = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
-                alert("Erfolg. Ihnen wurde eine Email zugesendet.")
+<<<<<<< HEAD
+                alert("Erfolg. Ihnen wird eine Email zugesendet.")
+=======
+                alert("Erfolg. Ihnen wird eine Email zugesendet.")
+>>>>>>> 1b4e5fb (Ihnen)
             });
     }
 
