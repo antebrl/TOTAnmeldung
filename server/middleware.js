@@ -16,8 +16,8 @@ export const validateRegister = async (req, res, next) => {
     
     if(await sumPersons(req.body.zeit) + req.body.personen >= 255) return res.status(400).json({message: "Database is full!"});
 
-    const docsUsed = await UserModel.countDocuments({email:req.body.email});
-    if(docsUsed > 0) return res.status(400).json({message: "Diese Email ist bereits registriert!"});
+    //const docsUsed = await UserModel.countDocuments({email:req.body.email});
+    //if(docsUsed > 0) return res.status(400).json({message: "Diese Email ist bereits registriert!"});
 
     next();
 };

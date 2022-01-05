@@ -6,7 +6,7 @@ const Inputs = () => {
     const [name, setName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
-    const [dependants, setDependants] = useState(1)
+    const [dependants, setDependants] = useState(2)
     const [time, setTime] = useState("09:00-11:00")
 
 
