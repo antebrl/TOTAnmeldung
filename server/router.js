@@ -16,8 +16,8 @@ router.post("/person", validateRegister, handleMail, async (req, res, next) => {
 
 router.get("/persons", async (req, res, next) => {
     const response = {
-        "09:00-11:00": await sumPersons("09:00-11:00"),
-        "11:30-13:30": await sumPersons("11:30-13:30"),
+        "09:00-11:00": (await sumPersons("09:00-11:00") >= 250) ? false : true,
+        "11:30-13:30": (await sumPersons("11:30-13:30") >= 250) ? false : true,
     } 
     res.status(200).json(response);    
 });
