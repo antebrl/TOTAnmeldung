@@ -9,10 +9,13 @@ const Form = () => {
                 <div className="hinweise">
                     <h1>Hinweise</h1>
                     <div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur purus ut faucibus pulvinar elementum integer enim neque volutpat. Elit at imperdiet dui accumsan sit amet. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus. Aliquam ultrices sagittis orci a scelerisque purus semper eget. Pellentesque habitant morbi tristique senectus et netus et. Duis convallis convallis tellus id interdum velit laoreet id donec. Nunc eget lorem dolor sed viverra. Nulla facilisi nullam vehicula ipsum a arcu. Tristique et egestas quis ipsum.</p>
+                        <p>Herzlich Willkommen,</p> 
+                        <p>Zum Tag der offenen Tür am Akg. Für die gesamte Veranstaltung gilt <strong>2G Plus</strong>.
+                        Bitte bringen Sie einen negativen Test sowie Impf- beziehungsweise Genesenennachweis mit.</p>
                     </div>
                     <div>
-                        <p>Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. Scelerisque eu ultrices vitae auctor. Ipsum dolor sit amet consectetur adipiscing elit. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Mi eget mauris pharetra et ultrices. At erat pellentesque adipiscing commodo. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Semper eget duis at tellus. Cursus vitae congue mauris rhoncus aenean vel. Et ultrices neque ornare aenean euismod elementum nisi quis.</p>
+                        <p>Die Einlasszeiten begrenzen sich auf <strong>9:30 - 10:30Uhr</strong> sowie auf <strong>11:00 - 12:00Uhr</strong>. 
+                         Sie werden von uns ein digitales Ticket für den Einlass erhalten.</p>
                     </div>
                 </div>
                 <div className="register">

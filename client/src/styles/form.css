@@ -36,7 +36,7 @@
 
 /*Linke Div*/
 .hinweise {
-    flex: 3 1 0%;
+    flex: 1 1 0%;
 
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -61,7 +61,7 @@
 
 /*Rechte Div*/
 .register {
-    flex: 2 1 0%;
+    flex: 1 1 0%;
     display: flex;
     flex-direction: column;
 
