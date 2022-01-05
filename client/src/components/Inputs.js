@@ -29,7 +29,7 @@ const Inputs = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
-                alert("Erfolg. Ihn wird eine Email zugesendet.")
+                alert("Erfolg. Ihnen wurde eine Email zugesendet.")
             });
     }
 
@@ -50,7 +50,7 @@ const Inputs = () => {
                     </div>
                     <div className="in">
                         <label>Personen</label>
-                        <input type={"number"} value={dependants} min={2} max={5} onChange={(e) => {setDependants(e.target.value)}} required/>
+                        <input type={"number"} value={dependants} min={1} max={5} onChange={(e) => {setDependants(e.target.value)}} required/>
                     </div>
                     <div className="in">
                         <label>Uhrzeit</label>
