@@ -43,3 +43,38 @@ input {
 
     cursor: pointer;
 }
+
+.close {
+    text-decoration: none;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+}
+
+.alert-sucess {
+    background-color: #6cb36d;
+    color: #114b12;
+    border-color: #d6e9c6;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-problem {
+    background-color: #c0625b;
+    color: #5a0c0c;
+    border-color: #d6e9c6;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.message {
+    text-align: left;
+}

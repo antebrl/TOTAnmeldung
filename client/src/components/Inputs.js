@@ -8,10 +8,16 @@ const Inputs = () => {
     const [email, setEmail] = useState("")
     const [dependants, setDependants] = useState(2)
     const [time, setTime] = useState("09:00-11:00")
+    const [alert, setAlert] = useState(false);
+    const [text, setText] = useState(null);
+    const [color, setColor] = useState(null);
 
 
     const submit = (e) => {
        e.preventDefault()
+
+       setAlert(true)
+       setText("Lädt..")
 
        const requestOptions = {
         method: 'POST',
@@ -26,10 +32,13 @@ const Inputs = () => {
         };
 
         fetch("/api/person", requestOptions)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                alert("Erfolg. Ihnen wird eine Email zugesendet.")
+            .then((res) => {
+                setColor(res.status === 201 ? "alert-sucess" : "alert-problem");
+                res.json()
+                .then((data) => {
+                    setAlert(true);
+                    setText(data.message);
+                });
             });
     }
 
@@ -63,6 +72,14 @@ const Inputs = () => {
                         <input type={"submit"} value={"Anmelden"}></input>
                 </div>
             </form>
+
+           {alert &&
+            <div className={color}>
+                <a href="#" className="close" onClick={() => setAlert(false)}>x</a>
+                <p className="message" dangerouslySetInnerHTML={{__html: text}}/>
+            </div>
+           }
+
         </div>
     )
 }

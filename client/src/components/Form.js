@@ -15,7 +15,12 @@ const Form = () => {
                     </div>
                     <div>
                         <p>Die Einlasszeiten begrenzen sich auf <strong>9:30 - 10:30Uhr</strong> sowie auf <strong>11:00 - 12:00Uhr</strong>. 
-                         Sie werden von uns ein digitales Ticket für den Einlass erhalten.</p>
+                         Sie werden von uns vorher per Email ein Ticket für den Einlass erhalten.</p>
+                         <p>Sie können sich für <strong>maximal 5</strong> Personen anmelden.</p>
+                    </div>
+                    <div>
+                        <p>Wir freuen uns auf Ihren Besuch,</p>
+                        <p>Die Schulgemeinschaft des AKG</p>
                     </div>
                 </div>
                 <div className="register">

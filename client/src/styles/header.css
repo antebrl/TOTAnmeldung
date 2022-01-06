@@ -15,11 +15,11 @@
 }
 
 .logo {
+    margin-left: 20px;
     height: 10vh;
     width: auto;
 }
 
-.secret {
-    opacity: 0;
-    pointer-events: no;
+.headerTitle {
+    margin-left: 10px;
 }

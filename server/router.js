@@ -9,9 +9,9 @@ router.post("/person", validateRegister, handleMail, async (req, res, next) => {
     //Sucess
     const user = new UserModel(req.body);
     await user.save((err) => {
-        if(err) return res.status(500).json({ message: "Database issue!" });
+        if(err) return res.status(500).json({ message: "<strong>Kann sie nicht anmelden</strong>" });
     }); 
-    res.status(201).json({ message: "Sucess!" });
+    res.status(201).json({ message: "<strong>Erfolgreich angemeldet! </strong> Sie haben eine Email erhalten" });
 });
 
 router.get("/persons", async (req, res, next) => {

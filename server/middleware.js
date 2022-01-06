@@ -12,12 +12,12 @@ export const validateRegister = async (req, res, next) => {
     if(!req.body.zeit) return res.status(406).json({message: "No time was given."})
     if(!req.body.personen) return res.status(406).json({message: "No dependants are given."})
 
-    if(req.body.personen > 5) return res.status(403).json({message: "Too mandy dependants given."})
+    if(req.body.personen > 5) return res.status(403).json({message: "Bitte kommen sie mit maximal 5 Personen"})
     
-    if(await sumPersons(req.body.zeit) + req.body.personen >= 255) return res.status(400).json({message: "Database is full!"});
+    if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 255) return res.status(400).json({message: "<strong>Das Event ist bereits ausgebucht.</strong> <br>Versuche es später erneut"});
 
     const docsUsed = await UserModel.countDocuments({email:req.body.email});
-    if(docsUsed > 0) return res.status(400).json({message: "Diese Email ist bereits registriert!"});
+    if(docsUsed > 0) return res.status(400).json({message: "<strong>Sie sind mit dieser Email bereits angemeldet!</strong> <br> Bitte überprüfen sie ihre Emails"});
 
     next();
 };
@@ -55,7 +55,7 @@ export const handleMail = async (req, res, next) => {
     transporter.sendMail(mailOptions, (err, info) => {
         if(err) {
             console.log(err);
-            res.status(400).json("Email is not valid!");
+            res.status(400).json("Email ist nicht gültig!");
         } else {
             console.log(info.response);
             next();
