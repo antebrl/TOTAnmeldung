@@ -3,29 +3,17 @@ import fs from "fs";
 import Mustache from "mustache";
 import nodeMailer from "nodemailer";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
+import UserModel from "./models/user.js";
 
 dotenv.config();
+mongoose.connect(process.env.MONGO, {useNewUrlParser: true, useUnifiedTopology: true});
 
-let data = {
-    name: "Hallo",
-    time: "10 Uhr",
-    dependants: "3",
-};
+const templatePdf = fs.readFileSync("./views/templatePdf.html", "utf8");
+const options = { format: 'A4', path: "./pdf/example.pdf" };
 
-let template = fs.readFileSync("./views/templatePdf.html", "utf8");
-let html = Mustache.render(template, data);
+const template = fs.readFileSync("./views/template.html", "utf8");
 
-let options = { format: 'A4', path: "./pdf/example.pdf" };
-
-let file = { content: html, name: 'example.pdf'};
-
-await html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
-    console.log("PDF Buffer:-", pdfBuffer);
-}).catch(err => {
-    console.log(err);
-});
-
-//Mail
 let transporter = nodeMailer.createTransport({
     service: 'gmail',
     auth: {
@@ -34,25 +22,40 @@ let transporter = nodeMailer.createTransport({
     }
 });
 
-template = fs.readFileSync("./views/template.html", "utf8");
-html = Mustache.render(template, data);
+let htmlPdf, html, file;
 
-const mailOptions = {
-    from: `"Tag der Offenen Tür AKG" <${process.env.EMAIL_USER}>`,
-    to: "gamoxgamox@gmail.com",
-    subject: 'Anmeldebestätigung',
-    html: html,
-    attachments: [{
-        filename: 'example.pdf',
-        path: './pdf/example.pdf',
-        contentType: 'application/pdf'
-    }],
-};
+const personArr = UserModel.find({}).cursor();
+personArr.eachAsync(async person => await sendMail(person));
 
-transporter.sendMail(mailOptions, (err, info) => {
-    if(err) {
+const sendMail = async (data) => {
+    console.log(data.email);
+    htmlPdf = Mustache.render(templatePdf, data);
+    html = Mustache.render(template, data);
+    file = { content: html, name: 'example.pdf'};
+
+    await html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+        console.log("PDF Buffer:-", pdfBuffer);
+    }).catch(err => {
         console.log(err);
-    } else {
-        console.log(info.response);
-    }
-});
+    });
+
+    const mailOptions = {
+        from: `"Tag der Offenen Tür AKG" <${process.env.EMAIL_USER}>`,
+        to: data.email,
+        subject: 'Ticket für Tag der offenen Tür',
+        html: html,
+        attachments: [{
+            filename: 'example.pdf',
+            path: './pdf/example.pdf',
+            contentType: 'application/pdf'
+        }],
+    };
+
+    transporter.sendMail(mailOptions, (err, info) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(info.response);
+        }
+    });
+};
