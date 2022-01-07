@@ -44,25 +44,25 @@ const Inputs = () => {
 
     return(
         <div className="Inputs">
-            <form onSubmit={(e) => submit(e)}>
+            <form className="form" onSubmit={(e) => submit(e)}>
                 <div className="in">
-                        <label>Name</label>
+                        <label>Vorname des begleitenden Elternteils</label>
                         <input type={"text"} placeholder="Name" onChange={(e) => {setName(e.target.value)}} required/>
                     </div>
                     <div className="in">
-                        <label>Nachname</label>
+                        <label>Nachname des begleitenden Elternteils</label>
                         <input type={"text"} placeholder="Nachname" onChange={(e) => {setLastName(e.target.value)}} required/>
                     </div>
                     <div className="in">
-                        <label>Email</label>
+                        <label>E-Mail-Adresse für die Zusendung der Anmeldebestätigung</label>
                         <input type={"email"} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required/>
                     </div>
                     <div className="in">
-                        <label>Personen</label>
-                        <input type={"number"} value={dependants} min={1} max={5} onChange={(e) => {setDependants(e.target.value)}} required/>
+                        <label>Wie viele Personen möchten gemeinsam Einlass haben?</label>
+                        <input type={"number"} value={dependants} min={1} max={3} onChange={(e) => {setDependants(e.target.value)}} required/>
                     </div>
                     <div className="in">
-                        <label>Uhrzeit</label>
+                        <label>Für welchen Zeitraum möchten Sie sich anmelden?</label>
                         <select onChange={(e) => {setTime(e.target.value)}} required>
                             <option>09:00-11:00</option>
                             <option>11:30-13:30</option>

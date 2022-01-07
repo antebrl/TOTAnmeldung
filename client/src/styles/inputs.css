@@ -13,6 +13,12 @@
     flex-direction: column;
 }
 
+.form {
+    display: flex;
+    flex-direction:column;
+    gap: 10px;
+}
+
 select,
 option,
 input {
@@ -60,7 +66,8 @@ input {
     color: #114b12;
     border-color: #d6e9c6;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: 1px solid transparent;
     border-radius: 4px;
 }
@@ -70,7 +77,8 @@ input {
     color: #5a0c0c;
     border-color: #d6e9c6;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: 1px solid transparent;
     border-radius: 4px;
 }

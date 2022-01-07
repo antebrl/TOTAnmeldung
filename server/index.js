@@ -17,5 +17,10 @@ app.use(cors());
 
 app.use("/api", router);
 
+app.get('*', () => {
+    //send index html from build front end
+    //res.sendFile(path.join(__dirname, 'static/index.html'));
+})
+
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));

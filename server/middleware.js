@@ -12,9 +12,9 @@ export const validateRegister = async (req, res, next) => {
     if(!req.body.zeit) return res.status(406).json({message: "No time was given."})
     if(!req.body.personen) return res.status(406).json({message: "No dependants are given."})
 
-    if(req.body.personen > 5) return res.status(403).json({message: "Bitte kommen sie mit maximal 5 Personen"})
+    if(req.body.personen > 3) return res.status(403).json({message: "Bitte kommen sie mit maximal 5 Personen"})
     
-    if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 255) return res.status(400).json({message: "<strong>Das Event ist bereits ausgebucht.</strong> <br>Versuche es später erneut"});
+    if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 255) return res.status(400).json({message: "<strong>Das ausgewählte Event ist bereits ausgebucht.</strong> <br>Versuchen sie es unter einem anderen Zeitraum erneut"});
 
     const docsUsed = await UserModel.countDocuments({email:req.body.email});
     if(docsUsed > 0) return res.status(400).json({message: "<strong>Sie sind mit dieser Email bereits angemeldet!</strong> <br> Bitte überprüfen sie ihre Emails"});
