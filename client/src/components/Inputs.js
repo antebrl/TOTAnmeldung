@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/inputs.css"
 
 const Inputs = () => {
@@ -7,10 +7,11 @@ const Inputs = () => {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [dependants, setDependants] = useState(2)
-    const [time, setTime] = useState("09:00-11:00")
+    const [time, setTime] = useState(null);
     const [alert, setAlert] = useState(false);
     const [text, setText] = useState(null);
     const [color, setColor] = useState(null);
+    const [options, setOptions] = useState(null);
 
 
     const submit = (e) => {
@@ -40,14 +41,53 @@ const Inputs = () => {
                     setText(data.message);
                 });
             });
-    }
+    };
+    
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+
+        fetch("/api/persons", requestOptions)
+            .then((res) => {
+                res.json()
+                .then((data) => {
+                    console.log(data);
+                    const {first, second, firstWait, secondWait} = data;
+                    if(firstWait && secondWait) {
+                        setOptions('<option disabled selected hidden>Alle Zeiträume bereits ausgebucht</option>');
+                        setAlert(true);
+                        setText("<strong>Das Event ist leider schon voll ausgebucht!</strong> Bitte haben Sie Verständnis.")
+                        setColor("alert-problem");
+                        return;
+                    }
+                    let firstText = '';
+                    let secondText = '';
+                    if(!firstWait) firstText = first ? '<option style="color: red">09:00-11:00 Warteliste</option>' : '<option>09:00-11:00</option>';
+                    if(!secondWait) secondText = second ? '<option style="color: red">11:30-13:30 Warteliste</option>' : '<option>11:30-13:30</option>';
+                    setOptions(`<option disabled selected hidden>Zeitraum wählen</option>${firstText}${secondText}`);
+                });
+            });
+    }, []);
+
+    const changeOption = (zeit) => {
+        if(zeit.includes("Warteliste")) {
+            setAlert(true);
+            setText("<strong>Dieser Zeitraum ist bereits ausgebucht!</strong> </br> Sie tragen sich nur in die Warteliste<strong>Warteliste</strong> ein.");
+            setColor("alert-problem");
+        } else {
+            setAlert(false);
+        }
+        setTime(zeit);
+    };
 
     return(
         <div className="Inputs">
             <form className="form" onSubmit={(e) => submit(e)}>
                 <div className="in">
                         <label>Vorname des begleitenden Elternteils</label>
-                        <input type={"text"} placeholder="Name" onChange={(e) => {setName(e.target.value)}} required/>
+                        <input type={"text"} placeholder="Vorname" onChange={(e) => {setName(e.target.value)}} required/>
                     </div>
                     <div className="in">
                         <label>Nachname des begleitenden Elternteils</label>
@@ -63,10 +103,7 @@ const Inputs = () => {
                     </div>
                     <div className="in">
                         <label>Für welchen Zeitraum möchten Sie sich anmelden?</label>
-                        <select onChange={(e) => {setTime(e.target.value)}} required>
-                            <option>09:00-11:00</option>
-                            <option>11:30-13:30</option>
-                        </select>
+                        <select value={time} onChange={(e) => {changeOption(e.target.value)}} dangerouslySetInnerHTML={{__html: options}} required/>
                     </div>
                     <div className="submit">
                         <input type={"submit"} value={"Anmelden"}></input>

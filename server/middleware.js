@@ -9,15 +9,21 @@ export const validateRegister = async (req, res, next) => {
     if(!req.body.name) return res.status(406).json({message: "No last name was given."})
     if(!req.body.vorname) return res.status(406).json({message: "No name was given."})
     if(!req.body.email) return res.status(406).json({message: "No email was given."})
-    if(!req.body.zeit) return res.status(406).json({message: "No time was given."})
+    if(!req.body.zeit) return res.status(406).json({message: "Bitte wählen Sie einen Zeitraum aus"})
     if(!req.body.personen) return res.status(406).json({message: "No dependants are given."})
 
-    if(req.body.personen > 3) return res.status(403).json({message: "Bitte kommen sie mit maximal 5 Personen"})
+    if(req.body.personen > 3) return res.status(403).json({message: "Bitte kommen Sie mit maximal 5 Personen"})
     
-    if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 255) return res.status(400).json({message: "<strong>Das ausgewählte Event ist bereits ausgebucht.</strong> <br>Versuchen sie es unter einem anderen Zeitraum erneut"});
-
+    if(req.body.zeit == "09:00-11:00" || req.body.zeit == "11:30-13:30") {
+        if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 255) return res.status(400).json({message: "<strong>Das ausgewählte Event ist bereits ausgebucht.</strong> <br>Laden Sie die Seite erneut und versuchen Sie es unter einem anderen Zeitraum erneut"});
+    } else if (req.body.zeit == "09:00-11:00 Warteliste" || req.body.zeit == "11:30-13:30 Warteliste") {
+        if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 55) return res.status(400).json({message: "<strong>Der ausgewählte Zeitraum samt Warteliste ist bereits voll ausgebucht.</strong> <br>Versuchen Sie es unter einem anderen Zeitraum erneut"});
+    } else {
+        return res.status(406).json({message: "Ungültige Zeitraumangabe!"});
+    }
+    
     const docsUsed = await UserModel.countDocuments({email:req.body.email});
-    if(docsUsed > 0) return res.status(400).json({message: "<strong>Sie sind mit dieser Email bereits angemeldet!</strong> <br> Bitte überprüfen sie ihre Emails"});
+    if(docsUsed > 0) return res.status(400).json({message: "<strong>Sie sind mit dieser Email bereits angemeldet!</strong> <br> Bitte überprüfen Sie Ihre Emails"});
 
     next();
 };
@@ -39,18 +45,32 @@ export const handleMail = async (req, res, next) => {
         },
         viewPath: "./views"
     }));
-
-    const mailOptions = {
-        from: `"Tag der Offenen Tür AKG" <${process.env.EMAIL_USER}>`,
-        to: req.body.email,
-        subject: 'Anmeldebestätigung',
-        template: "registerEmail",
-        context: {
-            name: `${req.body.vorname} ${req.body.name}`,
-            time: req.body.zeit,
-            dependants: req.body.personen,
-        }
-    };
+    let mailOptions;
+    if((req.body.zeit).includes("Warteliste")) {
+        mailOptions = {
+            from: `"Tag der Offenen Tür AKG" <${process.env.EMAIL_USER}>`,
+            to: req.body.email,
+            subject: 'Anmeldebestätigung Warteliste',
+            template: "registerEmailWarte",
+            context: {
+                name: `${req.body.vorname} ${req.body.name}`,
+                time: req.body.zeit,
+                dependants: req.body.personen,
+            }
+        };
+    } else {
+        mailOptions = {
+            from: `"Tag der Offenen Tür AKG" <${process.env.EMAIL_USER}>`,
+            to: req.body.email,
+            subject: 'Anmeldebestätigung',
+            template: "registerEmail",
+            context: {
+                name: `${req.body.vorname} ${req.body.name}`,
+                time: req.body.zeit,
+                dependants: req.body.personen,
+            }
+        };
+    }
 
     transporter.sendMail(mailOptions, (err, info) => {
         if(err) {

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Einlassticket</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +11,13 @@ body {
     font-family: arial
 }
 
-html { -webkit-print-color-adjust: exact; }
+.fl-left {
+    float: left
+}
+
+.fl-right {
+    float: right
+}
 
 h1 {
     text-transform: uppercase;
@@ -27,19 +27,13 @@ h1 {
     margin-bottom: 30px
 }
 
-.container {
-    background-color: #dadde6;
-}
-
 .row {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
+    overflow: hidden
 }
 
 .card {
-    display: flex;
-    width: 80%;
+    display: table-row;
+    width: 49%;
     background-color: #fff;
     color: #989898;
     margin-bottom: 10px;
@@ -55,7 +49,7 @@ h1 {
 
 .date {
     display: table-cell;
-    width: 45%;
+    width: 25%;
     position: relative;
     text-align: center;
     border-right: 2px dashed #dadde6
@@ -107,20 +101,10 @@ h1 {
 }
 
 .card-cont {
-    display: flex;
-    width: 77%;
+    display: table-cell;
+    width: 75%;
     font-size: 85%;
-    padding: 25px 0px 25px 20px;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-conts {
-    display: flex;
-    width: 70%;
-    font-size: 85%;
-    justify-content: center;
-    align-items: center;
+    padding: 10px 10px 30px 50px
 }
 
 .card-cont h3 {
@@ -128,14 +112,8 @@ h1 {
     font-size: 130%
 }
 
-.card-conts h3 {
-    color: #3C3C3C;
-    font-size: 100%
-}
-
-.left {
-    display: flex;
-    flex-direction: row;
+.row:last-child .card:last-of-type .card-cont h3 {
+    text-decoration: line-through
 }
 
 .card-cont>div {
@@ -184,45 +162,3 @@ h1 {
 .row:last-child .card:last-child .card-cont a {
     background-color: #F8504C
 }
-    </style>
-</head>
-<body>
-    <section class="container">
-    <h1>Ticket</h1>
-        <div class="row">
-            <article class="card fl-left">
-                <section class="date">
-                <time datetime="23th feb">
-                    <span>15</span><span>Jan</span>
-                </time>
-                </section>
-                <section class="card-cont">
-                <div>
-                <small>AKG Bensheim</small>
-                <h3>Tag der offenen Tür</h3>
-                <div class="even-date">
-                <i class="fa fa-calendar"></i>
-                <time>
-                    <span>Samstag 15 Januar 2022</span>
-                    <span>{{zeit}}</span>
-                </time>
-                </div>
-                </div>
-                </section>
-                <section class="card-conts">
-                    <div>
-                    <h3>Besucher</h3>
-                    <div class="even-date">
-                    <i class="fa fa-calendar"></i>
-                    <p>{{vorname}} {{name}}</p>
-                    <p>{{zeit}}</p>
-                    <p>{{personen}} Personen</p>
-                    </div>
-                    </div>
-                </section>
-            
-            </article>
-        </div>
-    </div>
-</body>
-</html>

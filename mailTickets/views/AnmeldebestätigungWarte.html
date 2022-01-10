@@ -4,7 +4,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Einlassticket</title>
+  <title>Anmeldebestätigung</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style type="text/css">
   /**
@@ -106,7 +106,7 @@
 
   <!-- start preheader -->
   <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-    Einlassticket zum Tag der offenen Tür
+    Erfolgreiche Anmeldung zum Tag der offenen Tür.
   </div>
   <!-- end preheader -->
 
@@ -135,7 +135,7 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Einlassticket</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Anmeldebestätigung</h1>
             </td>
           </tr>
         </table>
@@ -151,16 +151,36 @@
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Vielen Dank für Ihre Anmeldung. </br> Im Anhang erhalten Sie Ihr <strong>Einlassticket</strong> zum Tag der offenen Tür am AKG am 15.01 um {{zeit}}</p>
+              <p style="margin: 0;">Vielen Dank für Ihre Anmeldung. </br> Es ist Platz für Sie frei geworden und Sie sind erfolgreich dem Event hinzugefügt worden. Wir erwarten Sie mit großer Spannung. Freuen Sie ich mit Ihrem Kind auf eine interessanten Rundgang durch unsere Schule.</p>
             </td>
           </tr>
           <!-- end copy -->
 
+          <tr>
+              <td align="center" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
+                  <table style="border:3px solid #009788;">
+                      <tr>
+                          <td style="color:#009788;">Name</td>
+                          <td style="text-align:right;">{{vorname}} {{name}}</td>
+                      </tr>
+                      <tr>
+                          <td style="color:#009788;">Zeitraum</td>
+                          <td style="text-align:right;">{{zeit}}</td>
+                      </tr>
+                      <tr>
+                          <td style="color:#009788;">Personen</td>
+                          <td style="text-align:right;">{{personen}}</td>
+                      </tr>
+                  </table>
+              </td>
+          </tr>
+
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Bitte erscheinen Sie frühestens 30 Minuten vorher zum Einlass am Eingang mit Nachweis für <b>2G+</b> (für Schulkinder unter 18 reicht das Testheft!)</p>
-              <p style="margin: 0;">Und bringen Sie Ihr Einlassticket bitte in <strong>ausgedruckter</strong> Form mit!</p>
+              <p style="margin: 0; color:#009788;">Bitte erscheinen Sie frühestens 30 Minuten vorher zum Einlass am Eingang mit Nachweis für <b>2G+</b> (für Schulkinder unter 18 reicht das Testheft!)</p>
+              <p style="margin: 0; color:#009788;">Und bringen Sie Ihr <b>Einlassticket</b> bitte in ausgedruckter Form mit!</p>
+              <p style="margin: 0; color:#009788;">Dies ist noch nicht das Einlassticket. Das Einlassticket erhalten Sie spätestens ein Tag vor dem Event <b>per E-Mail</b></p>
             </td>
           </tr>
           <!-- end copy -->

@@ -11,6 +11,7 @@
 .Inputs .in {
     display: flex;
     flex-direction: column;
+    width: 95%;
 }
 
 .form {
