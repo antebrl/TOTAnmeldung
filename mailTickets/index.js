@@ -25,7 +25,15 @@ let transporter = nodeMailer.createTransport({
 });
 
 let htmlPdf, html, file, mailOptions;
-
+const sumFirst = await sumPersons("09:00-11:00");
+const sumFirstwait = await sumPersons("09:00-11:00 Warteliste");
+const sumSecondwait = await sumPersons("11:30-13:30 Warteliste");
+const sumSecond = await sumPersons("11:30-13:30");
+console.log(sumFirst);
+console.log(sumSecond);
+console.log(sumFirstwait);
+console.log(sumSecondwait);
+/*
 //Fill up from Waitlist
 const sumFirst = await sumPersons("09:00-11:00");
 let count = 255 - sumFirst;
@@ -68,7 +76,7 @@ if(countSecond > 1) {
         });
     });
 }
-
+*/
 
 //send Mails
 //const personFirstArr = UserModel.find({zeit: "09:00-11:00"}).cursor();
