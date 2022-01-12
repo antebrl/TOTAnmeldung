@@ -12,19 +12,21 @@ export const validateRegister = async (req, res, next) => {
     if(!req.body.zeit) return res.status(406).json({message: "Bitte wählen Sie einen Zeitraum aus"})
     if(!req.body.personen) return res.status(406).json({message: "No dependants are given."})
 
-    if(req.body.personen > 3) return res.status(403).json({message: "Bitte kommen Sie mit maximal 5 Personen"})
+    if(req.body.personen > 3) return res.status(403).json({message: "Bitte kommen Sie mit maximal 3 Personen"})
+    if(req.body.personen < 1) return res.status(403).json({message: "Bitte kommen Sie mit mindestens einer Personen"})
     
     if(req.body.zeit == "09:00-11:00" || req.body.zeit == "11:30-13:30") {
         if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 255) return res.status(400).json({message: "<strong>Das ausgewählte Event ist bereits ausgebucht.</strong> <br>Laden Sie die Seite erneut und versuchen Sie es unter einem anderen Zeitraum erneut"});
+        
+        const docsUsed = await UserModel.countDocuments({email:req.body.email});
+        if(docsUsed > 0) return res.status(400).json({message: "<strong>Sie sind mit dieser Email bereits angemeldet!</strong> <br> Bitte überprüfen Sie Ihre Emails"});
+
     } else if (req.body.zeit == "09:00-11:00 Warteliste" || req.body.zeit == "11:30-13:30 Warteliste") {
         if(await sumPersons(req.body.zeit) + parseInt(req.body.personen) >= 55) return res.status(400).json({message: "<strong>Der ausgewählte Zeitraum samt Warteliste ist bereits voll ausgebucht.</strong> <br>Versuchen Sie es unter einem anderen Zeitraum erneut"});
     } else {
         return res.status(406).json({message: "Ungültige Zeitraumangabe!"});
     }
     
-    const docsUsed = await UserModel.countDocuments({email:req.body.email});
-    if(docsUsed > 0) return res.status(400).json({message: "<strong>Sie sind mit dieser Email bereits angemeldet!</strong> <br> Bitte überprüfen Sie Ihre Emails"});
-
     next();
 };
 

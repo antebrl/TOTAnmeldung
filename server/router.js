@@ -16,10 +16,10 @@ router.post("/person", validateRegister, handleMail, async (req, res, next) => {
 
 router.get("/persons", async (req, res, next) => {
     const response = {
-        first: (await sumPersons("09:00-11:00") >= 255) ? true : false,
-        second: (await sumPersons("11:30-13:30") >= 255) ? true : false,
-        warteliste1: (await sumPersons("09:00-11:00 Warteliste") >= 55) ? true : false,
-        warteliste2: (await sumPersons("11:30-13:30 Warteliste") >= 55) ? true : false,
+        first: (await sumPersons("09:00-11:00") >= 252) ? true : false,
+        second: (await sumPersons("11:30-13:30") >= 252) ? true : false,
+        warteliste1: (await sumPersons("09:00-11:00 Warteliste") >= 52) ? true : false,
+        warteliste2: (await sumPersons("11:30-13:30 Warteliste") >= 52) ? true : false,
     } 
     res.status(200).json(response);    
 });

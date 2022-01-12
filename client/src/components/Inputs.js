@@ -54,8 +54,8 @@ const Inputs = () => {
                 res.json()
                 .then((data) => {
                     console.log(data);
-                    const {first, second, firstWait, secondWait} = data;
-                    if(firstWait && secondWait) {
+                    const {first, second, warteliste1, warteliste2} = data;
+                    if(warteliste1 && warteliste2) {
                         setOptions('<option disabled selected hidden>Alle Zeiträume bereits ausgebucht</option>');
                         setAlert(true);
                         setText("<strong>Das Event ist leider schon voll ausgebucht!</strong> Bitte haben Sie Verständnis.")
@@ -64,8 +64,8 @@ const Inputs = () => {
                     }
                     let firstText = '';
                     let secondText = '';
-                    if(!firstWait) firstText = first ? '<option style="color: red">09:00-11:00 Warteliste</option>' : '<option>09:00-11:00</option>';
-                    if(!secondWait) secondText = second ? '<option style="color: red">11:30-13:30 Warteliste</option>' : '<option>11:30-13:30</option>';
+                    if(!warteliste1) firstText = first ? '<option style="color: red">09:00-11:00 Warteliste</option>' : '<option>09:00-11:00</option>';
+                    if(!warteliste2) secondText = second ? '<option style="color: red">11:30-13:30 Warteliste</option>' : '<option>11:30-13:30</option>';
                     setOptions(`<option disabled selected hidden>Zeitraum wählen</option>${firstText}${secondText}`);
                 });
             });

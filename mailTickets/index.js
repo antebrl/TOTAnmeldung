@@ -25,14 +25,15 @@ let transporter = nodeMailer.createTransport({
 });
 
 let htmlPdf, html, file, mailOptions;
-const sumFirst = await sumPersons("09:00-11:00");
+const sumFirstCount = await sumPersons("09:00-11:00");
 const sumFirstwait = await sumPersons("09:00-11:00 Warteliste");
 const sumSecondwait = await sumPersons("11:30-13:30 Warteliste");
-const sumSecond = await sumPersons("11:30-13:30");
-console.log(sumFirst);
-console.log(sumSecond);
+const sumSecondCount = await sumPersons("11:30-13:30");
+console.log(sumFirstCount);
+console.log(sumSecondCount);
 console.log(sumFirstwait);
 console.log(sumSecondwait);
+
 /*
 //Fill up from Waitlist
 const sumFirst = await sumPersons("09:00-11:00");
@@ -45,6 +46,7 @@ if(count > 1) {
         users.map(async(doc) => {
             if(count > 1) {
                 count -= doc.personen;
+                console.log(doc);
                 doc.zeit = "09:00-11:00";
                 await doc.save();
                 console.log("Warteliste removed Mail:");
@@ -66,6 +68,7 @@ if(countSecond > 1) {
         users.map(async(doc) => {
             if(countSecond > 1) {
                 countSecond -= doc.personen;
+                console.log(doc);
                 doc.zeit = "11:30-13:30";
                 await doc.save();
                 console.log("Warteliste removed Mail:");
@@ -84,9 +87,9 @@ if(countSecond > 1) {
 
 //const personSecondArr = UserModel.find({zeit: "11:30-13:30"}).cursor();
 //personSecondArr.eachAsync(async person => await sendMail(person));
-
 const sendMail = async (data) => {
     console.log(data.email);
+    data.einlass = data.zeit == "09:00-11:00" ? "08:30-09:30" : "11:00-12:00";
     htmlPdf = Mustache.render(templatePdf, data);
     html = Mustache.render(template, data);
     file = { content: htmlPdf, name: 'ticket.pdf'};
@@ -137,3 +140,5 @@ const sendMailWarte = async (data) => {
         }
     });
 }
+
+//await sendMail({vorname: "Ante", name: "Br", zeit:"09:00-11:00", personen: 3, email:"gamoxgamox@gmail.com"});
