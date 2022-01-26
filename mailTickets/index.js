@@ -6,7 +6,10 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import UserModel from "./models/user.js";
 import {sumPersons} from "./Controlles.js";
+import XLSX from "xlsx";
+import path from "path";
 
+const __dirname = path.resolve();
 dotenv.config();
 mongoose.connect(process.env.MONGO, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -102,7 +105,7 @@ const sendMail = async (data) => {
 
     mailOptions = {
         from: `"Tag der Offenen Tür AKG" <${process.env.EMAIL_USER}>`,
-        to: "ahcwnh@gmail.com",
+        to: data.email,
         subject: 'Ticket für Tag der offenen Tür',
         html: html,
         attachments: [{
@@ -140,5 +143,3 @@ const sendMailWarte = async (data) => {
         }
     });
 }
-
-//await sendMail({vorname: "Ante", name: "Br", zeit:"09:00-11:00", personen: 3, email:"gamoxgamox@gmail.com"});
